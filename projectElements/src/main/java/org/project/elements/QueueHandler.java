@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Обработчик очереди
  */
 
 package org.project.elements;
@@ -29,7 +27,7 @@ public class QueueHandler {
                 /**
                  * количество элементов группы, обрабатываемых в потоке
                  */
-                private final int cntElemHandler = 10;
+                private final int cntElemShift = 10;
                 
                 /**
                  * Считает элементы в группе
@@ -60,7 +58,12 @@ public class QueueHandler {
                                 printResult(elem);
                             }
                             
-                            if(counterElem == cntElemHandler || cntElem == l.size() )
+                            /**
+                             * Проверяем, если количество элементов достигло cntElemShift,
+                             * меняем для потока группу
+                             * это сделано для равномерной обработки групп 
+                             */
+                            if(counterElem == cntElemShift || cntElem == l.size() )
                             {
                                 LinkedList<Element> l1 = (LinkedList<Element>) GeneratorQueue.getQueue().clone();
                                 for ( Element elem1 : l1) 
